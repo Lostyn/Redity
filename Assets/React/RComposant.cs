@@ -83,7 +83,7 @@ namespace React
             }
         }
 
-        public void setState(T nextState)
+        public void SetState(T nextState)
         {
             if (ShouldComponentUpdate(props, nextState))
             {

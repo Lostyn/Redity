@@ -16,7 +16,7 @@ public class Timer : RComposant<Timer.defaultState> {
     {
         defaultState s = state;
             s.value = 0;
-        setState(s);
+        SetState(s);
 
         StartCoroutine(Increment());
     }
@@ -28,7 +28,7 @@ public class Timer : RComposant<Timer.defaultState> {
             yield return new WaitForSeconds(1f);
             defaultState s = state;
                 s.value++;
-            setState(s);
+            SetState(s);
         }
     }
 

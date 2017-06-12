@@ -9,13 +9,7 @@ namespace React
     public class Container : ScriptableObject
     {
         public ExpendoObject defaultState;
-
-        public Container()
-        {
-            Init();
-        }
-
-        protected virtual void Init() { }
-
+        
+        public virtual void Init() { }
     }
 }

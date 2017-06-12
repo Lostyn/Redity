@@ -10,7 +10,7 @@ public class CounterReducer : Reducer {
     {
         string type = action.Get<string>("type");
 
-        switch (type.ToString())
+        switch (type)
         {
             case "INCREMENT":
                 int value = action.Get<int>("value");

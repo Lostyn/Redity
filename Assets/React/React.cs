@@ -12,6 +12,7 @@ namespace React
         
         private void Awake()
         {
+            container.Init();
             CreateStore(container.defaultState);
         }
 
@@ -19,6 +20,7 @@ namespace React
         {
             store = new Store(defaultState);
             store.AddReducer(new CounterReducer());
+            store.AddReducer(new TodoReducer());
         }
 
         public void Dispatch(ExpendoObject action)
