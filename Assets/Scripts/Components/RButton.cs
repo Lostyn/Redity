@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using React;
 
 public class RButton : RComposant<RButton.defaultState> {
 
@@ -22,9 +23,11 @@ public class RButton : RComposant<RButton.defaultState> {
 
     void HandlerClic()
     {
-        State o = props;
-        o.count = isMoins ? o.count - 1 : o.count + 1;
-        Dispatch(o);
+        ReactAction action = new ReactAction();
+        action.Add("type", isMoins ? "DECREMENT" : "INCREMENT");
+        action.Add("value", 2);
+
+        Dispatch(action);
     }
 
     public override void Render()
