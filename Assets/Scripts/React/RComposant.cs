@@ -26,8 +26,8 @@ namespace React
             }
         }
 
-        private GlobalState m_props;
-        public GlobalState props
+        private ExpendoObject m_props;
+        public ExpendoObject props
         {
             get { return m_props; }
         }
@@ -36,17 +36,20 @@ namespace React
 
         void Awake()
         {
-            _container = GetComponentInParent<React>();
+            _container = FindObjectOfType<React>();
 
             if (_container == null)
                 Debug.LogError("No container found");
         }
 
-        void OnEnable()
+        IEnumerator Start()
         {
             ComponentWillMount();
+            yield return new WaitForEndOfFrame();
             if (ShouldComponentSubscribe())
                 _container.store.Subscribe(UpdateProps);
+
+            m_props = _container.store.State;
 
             Render();
             ComponentDidMount();
@@ -61,19 +64,19 @@ namespace React
             _mounted = false;
         }
 
-        protected void Dispatch(ReactAction action)
+        protected void Dispatch(ExpendoObject action)
         {
             _container.Dispatch(action);
         }
 
-        public void UpdateProps(GlobalState nextProps)
+        public void UpdateProps(ExpendoObject nextProps)
         {
             ComponentWillRecieveProps(nextProps);
             if (ShouldComponentUpdate(nextProps, state))
             {
                 ComponentWillUpdate(nextProps, state);
 
-                GlobalState lastProps = m_props;
+                ExpendoObject lastProps = m_props;
                 m_props = nextProps;
                 Render();
                 ComponentDidUpdate(lastProps, state);

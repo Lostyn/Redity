@@ -14,7 +14,7 @@ public class Label : RComposant<Label.defaultState> {
     }
 
     public override void Render() {
-        m_text.text = props.count.ToString();
+        m_text.text = props.Get<int>("count").ToString();
     }
 
     public struct defaultState { }

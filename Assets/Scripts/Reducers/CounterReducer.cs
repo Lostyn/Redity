@@ -6,18 +6,18 @@ using React;
 
 public class CounterReducer : Reducer {
 
-	public override void process(ref GlobalState state, ReactAction action)
+	public override void process(ref ExpendoObject state, ExpendoObject action)
     {
-        string type = GetValue<string>(action, "type");
+        string type = action.Get<string>("type");
 
         switch (type.ToString())
         {
             case "INCREMENT":
-                int value = GetValue<int>(action, "value");
-                state.count += value;
+                int value = action.Get<int>("value");
+                state["count"] = state.Get<int>("count") + value;
                 break;
             case "DECREMENT":
-                state.count--;
+                state["count"] = state.Get<int>("count") - 1;
                 break;
         }
     }

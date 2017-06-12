@@ -2,22 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Reducer
+namespace React
 {
-    public virtual void process(ref GlobalState state, ReactAction action)
+    public class Reducer
     {
-    }
-
-    protected T GetValue<T>(ReactAction action, string key)
-    {
-        object value;
-        action.TryGetValue(key, out value);
-
-        if (value != null)
+        public virtual void process(ref ExpendoObject state, ExpendoObject action)
         {
-            return (T)value;
         }
-
-        return default(T);
     }
 }

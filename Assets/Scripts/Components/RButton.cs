@@ -21,18 +21,24 @@ public class RButton : RComposant<RButton.defaultState> {
         m_button.onClick.RemoveListener(HandlerClic);
     }
 
+    protected override bool ShouldComponentSubscribe()
+    {
+        return true;
+    }
+
     void HandlerClic()
     {
-        ReactAction action = new ReactAction();
-        action.Add("type", isMoins ? "DECREMENT" : "INCREMENT");
-        action.Add("value", 2);
+        ExpendoObject action = new ExpendoObject();
+        action["type"] = isMoins ? "DECREMENT" : "INCREMENT";
+        action["value"] = 2;
 
         Dispatch(action);
     }
 
     public override void Render()
     {
-        m_button.enabled = isMoins ? props.count > 0 : props.count < 10;
+        int value = props.Get<int>("count");
+        m_button.enabled = isMoins ? value > 0 : value < 10;
     }
 
     public struct defaultState { }

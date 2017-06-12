@@ -7,20 +7,21 @@ namespace React
 {
     public class React : MonoBehaviour
     {
+        [SerializeField] Container container;
         public Store store;
-
+        
         private void Awake()
         {
-            CreateStore();
+            CreateStore(container.defaultState);
         }
 
-        private void CreateStore()
+        private void CreateStore(ExpendoObject defaultState)
         {
-            store = new Store();
+            store = new Store(defaultState);
             store.AddReducer(new CounterReducer());
         }
 
-        public void Dispatch(ReactAction action)
+        public void Dispatch(ExpendoObject action)
         {
             store.Dispatch(action);
         }
