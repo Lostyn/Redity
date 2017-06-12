@@ -29,6 +29,7 @@ public class TodoList : RComposant<TodoList.defaultState> {
             child = Instantiate(m_itemPrefab, m_grid, false).transform;
             child.name = t.Id.ToString();
         }
+        
         child.GetComponentInChildren<RComposant<TodoItem.defaultState>>().SetState(new TodoItem.defaultState
         {
             task = t
@@ -38,6 +39,12 @@ public class TodoList : RComposant<TodoList.defaultState> {
     public override void Render()
     {
         List<Task> list = props.Get<List<Task>>("Tasks");
+        foreach (Transform c in m_grid)
+        {
+            if (list.FindIndex(o => o.Id.ToString() == c.name) == -1)
+                Destroy(c.gameObject);
+        }
+
         list.ForEach(ProcessTask);
     }
 }
