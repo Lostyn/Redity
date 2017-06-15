@@ -14,16 +14,16 @@ public class TodoReducer : Reducer
 
         switch (type)
         {
-            case ActionTypes.TOGGLE:
+            case TodoActionTypes.TOGGLE:
                 Guid id = action.Get<Guid>("id");
                 Task t = state.Get<List<Task>>("Tasks").First(o => o.Id == id);
                 t.done = !t.done;
                 break;
-            case ActionTypes.ADD:
+            case TodoActionTypes.ADD:
                 Task task = new Task(action.Get<string>("label"));
                 state.Get<List<Task>>("Tasks").Add(task);
                 break;
-            case ActionTypes.REMOVE:
+            case TodoActionTypes.REMOVE:
                 state["Tasks"] = state.Get<List<Task>>("Tasks").Where(o => o.Id != action.Get<Guid>("id")).ToList<Task>();
                 break;
         }

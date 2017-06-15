@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActionTypes {
+public class TodoActionTypes {
 
     public const string TOGGLE = "TOGGLE";
     public const string ADD = "ADD";

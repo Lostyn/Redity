@@ -13,14 +13,15 @@ namespace React
         private void Awake()
         {
             container.Init();
-            CreateStore(container.defaultState);
+            CreateStore();
         }
 
-        private void CreateStore(ExpendoObject defaultState)
+        private void CreateStore()
         {
-            store = new Store(defaultState);
-            store.AddReducer(new CounterReducer());
-            store.AddReducer(new TodoReducer());
+            store = new Store(container.defaultState);
+
+            if (container.reducers != null)
+                store.AddReducers(container.reducers);
         }
 
         public void Dispatch(ExpendoObject action)

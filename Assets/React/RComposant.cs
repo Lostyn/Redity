@@ -104,9 +104,9 @@ namespace React
         public virtual void Render() { }
 
         /*State Changes*/
-        public virtual bool ShouldComponentUpdate(object nextProps, object nextState) { return true; }
-        protected virtual void ComponentWillUpdate(object nextProps, object nextState) { }
-        protected virtual void ComponentDidUpdate(object lastProps, object lastState) { }
+        public virtual bool ShouldComponentUpdate(ExpendoObject nextProps, object nextState) { return true; }
+        protected virtual void ComponentWillUpdate(ExpendoObject nextProps, object nextState) { }
+        protected virtual void ComponentDidUpdate(ExpendoObject lastProps, object lastState) { }
 
         /*Props Changes*/
         protected virtual void ComponentWillRecieveProps(object nextProps) { }

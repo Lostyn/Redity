@@ -24,20 +24,12 @@ public class TodoItem : RComposant<TodoItem.defaultState> {
 
     void ToggleTask()
     {
-        ExpendoObject action = new ExpendoObject();
-        action["type"] = ActionTypes.TOGGLE;
-        action["id"] = state.task.Id;
-
-        Dispatch(action);
+        Dispatch(TodoActionCreators.ToggleItem(state.task.Id));
     }
 
     void RemoveHandler()
     {
-        ExpendoObject action = new ExpendoObject();
-        action["type"] = ActionTypes.REMOVE;
-        action["id"] = state.task.Id;
-
-        Dispatch(action);
+        Dispatch(TodoActionCreators.RemoveItem(state.task.Id));
     }
 
     public override void Render()

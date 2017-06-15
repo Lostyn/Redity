@@ -27,15 +27,19 @@ namespace React {
             _reducers.Add(r);
         }
 
+        public void AddReducers(List<Reducer> rs)
+        {
+            _reducers.InsertRange(_reducers.Count, rs);
+        }
+
         public void Dispatch(ExpendoObject action)
         {
-            ExpendoObject nextState = State;
             _reducers.ForEach(reducer =>
             {
-                reducer.process(ref nextState, action);
+                reducer.process(ref _state, action);
             });
             
-            SetState(nextState);
+            SetState(_state);
         }
 
         private void SetState(ExpendoObject nextState)
@@ -43,7 +47,7 @@ namespace React {
             _state = nextState;
             _subscribers.ForEach(_subscriber =>
             {
-                _subscriber(nextState);
+                _subscriber(_state);
             });
         }
 

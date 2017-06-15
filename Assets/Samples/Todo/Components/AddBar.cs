@@ -11,7 +11,7 @@ public class AddBar : RComposant<AddBar.defaultState> {
     [SerializeField] InputField m_input;
     [SerializeField] Button m_add;
 
-    public override bool ShouldComponentUpdate(object nextProps, object nextState)
+    public override bool ShouldComponentUpdate(ExpendoObject nextProps, object nextState)
     {
         return false;
     }
@@ -26,10 +26,7 @@ public class AddBar : RComposant<AddBar.defaultState> {
         string value = m_input.text;
         if (!string.IsNullOrEmpty(value))
         {
-            ExpendoObject action = new ExpendoObject();
-            action["type"] = ActionTypes.ADD;
-            action["label"] = value;
-            Dispatch(action);
+            Dispatch(TodoActionCreators.AddItem(value));
 
             m_input.text = "";
         }

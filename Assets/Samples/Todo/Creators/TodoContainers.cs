@@ -13,16 +13,12 @@ public class TodoContainers : Container {
         base.Init();
 
         defaultState = new ExpendoObject();
-        List<Task> tasks = new List<Task>();
 
-        string path = Path.Combine(Application.persistentDataPath, "Todos.csv");
-        string[] allLines = File.ReadAllLines(path, System.Text.Encoding.UTF8);
-
-        for(int i = 0; i < allLines.Length; i++)
-            tasks.Add(new Task(allLines[i]));
-
-        defaultState["Tasks"] = tasks;
+        defaultState["Tasks"] = new List<Task>();
         defaultState["FilterMode"] = FilterMode.ALL;
+
+        reducers = new List<Reducer>();
+        reducers.Add(new TodoReducer());
     }
 
 
