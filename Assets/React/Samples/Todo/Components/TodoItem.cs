@@ -4,15 +4,21 @@ using UnityEngine;
 using UnityEngine.UI;
 using React;
 
-public class TodoItem : RComposant<TodoItem.defaultState> {
-    public struct defaultState {
-        public Task task;
-    }
-
+public class TodoItem : RComposant {
+    
     [SerializeField] Text m_text;
     [SerializeField] Image m_image;
     [SerializeField] Button m_btn;
     [SerializeField] Button m_remove;
+
+    Task _task;
+    public Task Task
+    {
+        set {
+            _task = value;
+            Render();
+        }
+    }
 
     protected override void ComponentDidMount()
     {
@@ -24,17 +30,17 @@ public class TodoItem : RComposant<TodoItem.defaultState> {
 
     void ToggleTask()
     {
-        Dispatch(TodoActionCreators.ToggleItem(state.task.Id));
+        Dispatch(TodoActionCreators.ToggleItem(_task.Id));
     }
 
     void RemoveHandler()
     {
-        Dispatch(TodoActionCreators.RemoveItem(state.task.Id));
+        Dispatch(TodoActionCreators.RemoveItem(_task.Id));
     }
 
     public override void Render()
     {
-        m_text.text = state.task.Label;
-        m_image.color = state.task.done ? Color.green : Color.white;
+        m_text.text = _task.Label;
+        m_image.color = _task.done ? Color.green : Color.white;
     }
 }

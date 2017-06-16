@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using React;
 
-public class Label : RComposant<Label.defaultState> {
+public class Label : RComposant {
 
     [SerializeField] Text m_text;
 
@@ -16,6 +16,4 @@ public class Label : RComposant<Label.defaultState> {
     public override void Render() {
         m_text.text = props.Get<int>("count").ToString();
     }
-
-    public struct defaultState { }
 }

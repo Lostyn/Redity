@@ -4,14 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using React;
 
-public class AddBar : RComposant<AddBar.defaultState> {
-
-    public struct defaultState { }
-
+public class AddBar : RComposant {
     [SerializeField] InputField m_input;
     [SerializeField] Button m_add;
 
-    public override bool ShouldComponentUpdate(ExpendoObject nextProps, object nextState)
+    public override bool ShouldComponentUpdate(ExpendoObject nextProps)
     {
         return false;
     }

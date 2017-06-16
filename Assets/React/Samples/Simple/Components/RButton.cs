@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using React;
 
-public class RButton : RComposant<RButton.defaultState> {
+public class RButton : RComposant {
 
     [SerializeField] Button m_button;
     [SerializeField] bool isMoins;
@@ -40,6 +40,4 @@ public class RButton : RComposant<RButton.defaultState> {
         int value = props.Get<int>("count");
         m_button.enabled = isMoins ? value > 0 : value < 10;
     }
-
-    public struct defaultState { }
 }

@@ -5,27 +5,12 @@ using System;
 
 namespace React
 {
-    public class RComposant<T> : MonoBehaviour where T : struct
+    public class RComposant : MonoBehaviour
     {
 
         private React _container;
 
-        private T m_state;
-        public T state
-        {
-            get { return m_state; }
-            set
-            {
-                if (_mounted)
-                {
-                    Debug.LogError("state is read only after component was mount. Use setState function !");
-                    return;
-                }
-
-                m_state = value;
-            }
-        }
-
+        
         private ExpendoObject m_props;
         public ExpendoObject props
         {
@@ -72,27 +57,14 @@ namespace React
         public void UpdateProps(ExpendoObject nextProps)
         {
             ComponentWillRecieveProps(nextProps);
-            if (ShouldComponentUpdate(nextProps, state))
+            if (ShouldComponentUpdate(nextProps))
             {
-                ComponentWillUpdate(nextProps, state);
+                ComponentWillUpdate(nextProps);
 
                 ExpendoObject lastProps = m_props;
                 m_props = nextProps;
                 Render();
-                ComponentDidUpdate(lastProps, state);
-            }
-        }
-
-        public void SetState(T nextState)
-        {
-            if (ShouldComponentUpdate(props, nextState))
-            {
-                ComponentWillUpdate(props, nextState);
-
-                T lastState = m_state;
-                m_state = nextState;
-                Render();
-                ComponentDidUpdate(props, lastState);
+                ComponentDidUpdate(lastProps);
             }
         }
 
@@ -104,9 +76,9 @@ namespace React
         public virtual void Render() { }
 
         /*State Changes*/
-        public virtual bool ShouldComponentUpdate(ExpendoObject nextProps, object nextState) { return true; }
-        protected virtual void ComponentWillUpdate(ExpendoObject nextProps, object nextState) { }
-        protected virtual void ComponentDidUpdate(ExpendoObject lastProps, object lastState) { }
+        public virtual bool ShouldComponentUpdate(ExpendoObject nextProps) { return true; }
+        protected virtual void ComponentWillUpdate(ExpendoObject nextProps) { }
+        protected virtual void ComponentDidUpdate(ExpendoObject lastProps) { }
 
         /*Props Changes*/
         protected virtual void ComponentWillRecieveProps(object nextProps) { }

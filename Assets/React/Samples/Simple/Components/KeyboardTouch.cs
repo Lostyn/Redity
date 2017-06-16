@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using React;
 
-public class KeyboardTouch : RComposant<KeyboardTouch.defaultState>, 
+public class KeyboardTouch : RComposant, 
                                 IPointerClickHandler, 
                                 IPointerEnterHandler, 
                                 IPointerExitHandler
@@ -18,8 +18,6 @@ public class KeyboardTouch : RComposant<KeyboardTouch.defaultState>,
         ENTER
     }
     [SerializeField] KeyType m_keyType;
-
-    public struct defaultState { }
 
     [SerializeField] Text m_label;
     [SerializeField] Graphic m_img;
@@ -67,7 +65,7 @@ public class KeyboardTouch : RComposant<KeyboardTouch.defaultState>,
         }
     }
 
-    public override bool ShouldComponentUpdate(ExpendoObject nextProps, object nextState)
+    public override bool ShouldComponentUpdate(ExpendoObject nextProps)
     {
         bool value = props.Get<KeyboardState>("keyboard").isMaj != _isMaj;
         _isMaj = props.Get<KeyboardState>("keyboard").isMaj;

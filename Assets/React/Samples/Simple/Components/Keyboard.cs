@@ -4,10 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using React;
 
-public class Keyboard : RComposant<Keyboard.defaultState>
+public class Keyboard : RComposant
 {
-    public struct defaultState { }
-
     [SerializeField] CanvasGroup m_group;
 
     bool isOpen = true;
@@ -18,7 +16,7 @@ public class Keyboard : RComposant<Keyboard.defaultState>
         return true;
     }
 
-    public override bool ShouldComponentUpdate(ExpendoObject nextProps, object nextState)
+    public override bool ShouldComponentUpdate(ExpendoObject nextProps)
     {
         KeyboardState state = props.Get<KeyboardState>("keyboard");
         if ((state.target != null) != isOpen)

@@ -5,12 +5,11 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using React;
 
-public class Field : RComposant<Field.defaultState>, IPointerClickHandler
+public class Field : RComposant, IPointerClickHandler
 {
     [SerializeField] Text m_text;
-    public struct defaultState { }
 
-    public override bool ShouldComponentUpdate(ExpendoObject nextProps, object nextState)
+    public override bool ShouldComponentUpdate(ExpendoObject nextProps)
     {
         return false;
     }

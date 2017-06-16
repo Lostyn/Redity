@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using React;
 using System.Linq;
 
-public class TodoList : RComposant<TodoList.defaultState> {
+public class TodoList : RComposant {
 
     public struct defaultState { }
     [SerializeField] GameObject m_itemPrefab;
@@ -29,11 +29,8 @@ public class TodoList : RComposant<TodoList.defaultState> {
             child = Instantiate(m_itemPrefab, m_grid, false).transform;
             child.name = t.Id.ToString();
         }
-        
-        child.GetComponentInChildren<RComposant<TodoItem.defaultState>>().SetState(new TodoItem.defaultState
-        {
-            task = t
-        });
+
+        child.GetComponentInChildren<TodoItem>().Task = t;
     }
 
     public override void Render()
