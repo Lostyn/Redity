@@ -5,10 +5,16 @@ using React;
 using System.Linq;
 using System;
 
-public class TodoReducer : Reducer
+public class TodoState
 {
+    public List<Task> Tasks;
+}
 
-    public override void process(ref ExpendoObject state, ExpendoObject action)
+public class TodoReducer : ReducerBase<TodoState> {
+
+    public TodoReducer(string key) : base(key) { }
+
+    public override TodoState Reduce(TodoState state, ExpendoObject action)
     {
         string type = action.Get<string>("type");
 
@@ -16,16 +22,19 @@ public class TodoReducer : Reducer
         {
             case TodoActionTypes.TOGGLE:
                 Guid id = action.Get<Guid>("id");
-                Task t = state.Get<List<Task>>("Tasks").First(o => o.Id == id);
+                Task t = state.Tasks.First(o => o.Id == id);
                 t.done = !t.done;
                 break;
             case TodoActionTypes.ADD:
                 Task task = new Task(action.Get<string>("label"));
-                state.Get<List<Task>>("Tasks").Add(task);
+                state.Tasks.Add(task);
                 break;
             case TodoActionTypes.REMOVE:
-                state["Tasks"] = state.Get<List<Task>>("Tasks").Where(o => o.Id != action.Get<Guid>("id")).ToList<Task>();
+                state.Tasks = state.Tasks.Where(o => o.Id != action.Get<Guid>("id")).ToList<Task>();
                 break;
         }
+
+        return state;
     }
+
 }

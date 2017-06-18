@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using React;
 
 public class TodoItem : RComposant {
-    
+
     [SerializeField] Text m_text;
     [SerializeField] Image m_image;
     [SerializeField] Button m_btn;
@@ -14,7 +14,8 @@ public class TodoItem : RComposant {
     Task _task;
     public Task Task
     {
-        set {
+        set
+        {
             _task = value;
             Render();
         }

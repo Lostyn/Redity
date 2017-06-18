@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using React;
 
 public class AddBar : RComposant {
+
     [SerializeField] InputField m_input;
     [SerializeField] Button m_add;
 

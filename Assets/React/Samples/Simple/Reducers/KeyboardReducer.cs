@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using React;
+using System;
 
-public struct KeyboardState
+public class KeyboardState
 {
     public Text target;
     public bool isMaj;
@@ -12,40 +13,36 @@ public struct KeyboardState
 }
 
 
-public class KeyboardReducer : Reducer
+public class KeyboardReducer : ReducerBase<KeyboardState>
 {
-    public override object DefaultState()
-    {
-        return new KeyboardState();
-    }
+    public KeyboardReducer(string key) : base(key) { }
 
-    public override void process(ref ExpendoObject state, ExpendoObject action)
+    public override KeyboardState Reduce(KeyboardState state, ExpendoObject action)
     {
         string type = action.Get<string>("type");
-        KeyboardState s = state.Get<KeyboardState>("keyboard");
 
         switch (type)
         {
             case KeyboardActionTypes.SET_TARGET:
-                s.target = action.Get<Text>("target");
-                s.value = s.target.text;
+                state.target = action.Get<Text>("target");
+                state.value = state.target.text;
                 break;
             case KeyboardActionTypes.TOOGLE_MAJ:
-                s.isMaj = !s.isMaj;
+                state.isMaj = !state.isMaj;
                 break;
             case KeyboardActionTypes.ADD_CHAR:
-                s.value += action.Get<string>("char");
+                state.value += action.Get<string>("char");
                 break;
             case KeyboardActionTypes.REMOVE_CHAR:
-                if (!string.IsNullOrEmpty(s.value))
-                    s.value = s.value.Remove(s.value.Length - 1);
+                if (!string.IsNullOrEmpty(state.value))
+                    state.value = state.value.Remove(state.value.Length - 1);
                 break;
             case KeyboardActionTypes.VALID:
-                s.target = null;
-                s.value = "";
+                state.target = null;
+                state.value = "";
                 break;
         }
-        
-        state["keyboard"] = s;
+
+        return state;
     }
 }

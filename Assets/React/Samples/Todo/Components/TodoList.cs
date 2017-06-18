@@ -1,20 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using React;
 using System.Linq;
 
 public class TodoList : RComposant {
 
-    public struct defaultState { }
     [SerializeField] GameObject m_itemPrefab;
     [SerializeField] Transform m_grid;
-
-    protected override void ComponentDidMount()
-    {
-        base.ComponentDidMount();
-    }
 
     protected override bool ShouldComponentSubscribe()
     {
@@ -35,8 +28,8 @@ public class TodoList : RComposant {
 
     public override void Render()
     {
-        List<Task> list = props.Get<List<Task>>("Tasks");
-        foreach (Transform c in m_grid)
+        List<Task> list = props.Get<TodoState>("todo").Tasks;
+        foreach(Transform c in m_grid)
         {
             if (list.FindIndex(o => o.Id.ToString() == c.name) == -1)
                 Destroy(c.gameObject);

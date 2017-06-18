@@ -13,7 +13,7 @@ namespace React {
         {
             get { return _state; }
         }
-        private List<Reducer> _reducers = new List<Reducer>();
+        private List<IReducer> _reducers = new List<IReducer>();
 
         private List<Action<ExpendoObject>> _subscribers = new List<Action<ExpendoObject>>();
         
@@ -22,12 +22,12 @@ namespace React {
             _state = state;
         }
 
-        public void AddReducer(Reducer r)
+        public void AddReducer(IReducer r)
         {
             _reducers.Add(r);
         }
 
-        public void AddReducers(List<Reducer> rs)
+        public void AddReducers(List<IReducer> rs)
         {
             _reducers.InsertRange(_reducers.Count, rs);
         }
@@ -36,7 +36,9 @@ namespace React {
         {
             _reducers.ForEach(reducer =>
             {
-                reducer.process(ref _state, action);
+
+                string key = reducer.GetKey();
+                _state[key] = reducer.ReduceAny(_state[key], action);
             });
             
             SetState(_state);

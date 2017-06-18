@@ -1,12 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 using React;
+using System;
 
 public class TodoActionCreators {
-
-	public static ExpendoObject ToggleItem(Guid todoId)
+    
+    public static ExpendoObject ToggleItem(Guid todoId)
     {
         ExpendoObject action = new ExpendoObject();
         action["type"] = TodoActionTypes.TOGGLE;
@@ -32,4 +32,5 @@ public class TodoActionCreators {
 
         return action;
     }
+
 }
