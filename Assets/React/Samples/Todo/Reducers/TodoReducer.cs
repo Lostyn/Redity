@@ -7,7 +7,7 @@ using System;
 
 public class TodoState
 {
-    public List<Task> Tasks;
+    public List<Task> Tasks = new List<Task>();
 }
 
 public class TodoReducer : ReducerBase<TodoState> {

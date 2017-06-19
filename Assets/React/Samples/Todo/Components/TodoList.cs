@@ -34,7 +34,7 @@ public class TodoList : RComposant {
             if (list.FindIndex(o => o.Id.ToString() == c.name) == -1)
                 Destroy(c.gameObject);
         }
-
+        
         list.ForEach(ProcessTask);
     }
 }
