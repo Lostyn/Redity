@@ -1,4 +1,5 @@
-# <img src="https://raw.githubusercontent.com/Lostyn/UnityRUI/master/Misc/Logo1.png" height="60"> 
+# <img src="https://raw.githubusercontent.com/Lostyn/UnityRUI/master/Misc/Logo1.png" height="100"> 
+# <img src="https://raw.githubusercontent.com/Lostyn/UnityRUI/master/Misc/Logo2.png" height="100"> 
 #Redity
 
 Redux concept script for Unity
