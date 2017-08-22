@@ -1,6 +1,7 @@
 # <img src="https://raw.githubusercontent.com/Lostyn/Rednity/master/Misc/Logo1.png" height="100"> 
 
 Rednity is a Unity vision of javascript Redux architecture.
+This implementation is designed without dependency
 
 # Concept
 
