@@ -126,7 +126,7 @@ public class TodoContainer : Container
 }
 ```
 
-_Note: Still thinking about this concept. Container allow you to split your code and have multiple actions/reducer/state in a single application, and improve your code visibility.
+_Note: Still thinking about this concept. Container allow you to split your code and have multiple actions/reducer/state in a single application, and improve your code visibility._
 
 5. Setup your Unity scene
 - Create a Container asset in your project with context menu `Rednity/TaskContainer`
