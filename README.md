@@ -152,4 +152,4 @@ public class MyComponent : MonoBehaviour
 
 # Example
 
-- [Todo](Assets/Samples/Todo)
+- [Todo](Assets/Rednity/Samples/Todo)
