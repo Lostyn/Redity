@@ -154,3 +154,12 @@ public class MyComponent : MonoBehaviour
 # Example
 
 - [Todo](Assets/Rednity/Samples/Todo)
+
+# Roadmap
+
+- Thinking about the pertinence of ExpendoObject logic
+- Thinking about Container logic
+- Conditional update 
+```csharp
+	Rednity.Subcriber(Action<ExpendoObject> cb).If(Action<ExpendoObject, ExpendoObject, bool>);
+```
